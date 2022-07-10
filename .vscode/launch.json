@@ -1,0 +1,40 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/python/consumeREST.py",
+            "console": "integratedTerminal"
+        },
+
+        {
+            "name": "Node.js",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/javascript/odataTest.js",
+            "console": "integratedTerminal"
+        },
+        
+        {
+            "name": "AL custom debug",
+            "request": "launch",
+            "type": "al",
+            "environmentType": "OnPrem",
+            "server": "http://localhost:8080/",
+            "serverInstance": "BC170",
+            "authentication": "Windows",
+            "port": 7049,
+            "startupObjectId": 50101,
+            "startupObjectType": "Table",
+            "breakOnError": true,
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "tenant": "default"
+        }
+
+        
+    ]
+}
