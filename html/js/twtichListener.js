@@ -1,9 +1,9 @@
+//https://tmijs.com/
 // const tmi = require('tmi.js');
-// const clipboard = require('clipboardy.js');
-// import clipboard from 'clipboardy';
+
 
 const client = new tmi.Client({
-	channels: [ 'hahahe0304' ]
+	channels: [ 'channel' ]
 });
 
 client.connect();
