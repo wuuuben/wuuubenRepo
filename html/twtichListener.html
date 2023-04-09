@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <title>Twitch Chat Counter</title>
+</head>
+<body>
+    <div id="showbox"></div>
+    <input type="button" id="testBtn" value="test">
+    
+</body>
+<script src="js/tmi.min.js"></script>
+<script src="js/twtichListener.js"></script>
+</html>
+
+
+<script>
+    // let textNode = document.getElementById('showbox').firstChild;
+    
+    $('#showbox').on('DOMSubtreeModified', ()=>{
+        let copyString=$('#showbox').text();
+        navigator.clipboard.writeText(copyString);
+        // alert(`Copy String: ${copyString}`);
+    });
+
+    // $('#testBtn').on('click',()=>{
+    //     document.getElementById('showbox').innerText = '1';
+    // });
+</script>
+
+<!-- <script>
+    const client = new tmi.Client({ channels: [ 'mcbanterface' ] });
+    client.connect().catch(console.error);
+    client.on('message', (channel, tags, message, self) => {
+    if (self) return;
+    if(tags['username']=='wuuuben') {
+        document.getElementById('showbox').innerText = message;
+        
+        console.log(`${tags['username']}: ${message}`);
+    }
+});
+</script> -->

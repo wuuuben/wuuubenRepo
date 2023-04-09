@@ -1,0 +1,18 @@
+<body>
+
+</body>
+<script>
+    function get(page, format, season) {
+    console.log(`fetching page: ${page}`)
+    //https://hearthstone.blizzard.com/en-us/api/community/leaderboardsData?region=AP&leaderboardId=arena&page=10
+    fetch(`https://hearthstone.blizzard.com/en-us/api/community/leaderboardsData?region=AP&leaderboardId=arena&page=${page}`).then(res => res.json()).then(val => {
+        const me = val.leaderboard.rows.find(r => r.accountid === 'benwu')
+        if (me) console.log(me)
+        else {
+            get(page + 1);
+        }
+    })
+    
+}
+get(20, 'arena', '');//startPage,format,season //`&seasonId=${114}`
+</script>
