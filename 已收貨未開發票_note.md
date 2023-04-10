@@ -5,5 +5,10 @@
 
 "Posted Whse. Receipt Header"
 
+"Posted Transfer Receipt"=>"Transfer Order No"
+
+
+
+
 <!-- https://vld-nav.com/how-to-group-data -->
                  
