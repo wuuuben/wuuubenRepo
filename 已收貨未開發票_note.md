@@ -5,7 +5,7 @@
 
 "Posted Whse. Receipt Header"
 
-"Posted Transfer Receipt"=>"Transfer Order No"
+Page::"Posted Transfer Receipt"=>field "Transfer Order No"=> Page::"Transfer Orders"
 
 
 
