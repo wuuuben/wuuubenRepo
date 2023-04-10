@@ -10,7 +10,10 @@ Page::"Trasfer Orders"對應的Line Page::"Transfer Order Subform"
 Page::"Warehouse Receipt"對應的Line Page::"Whse. Receipt Subform"
 
 Cross-Dock Bin Code 倉單
-Number of put-away activities created: 1.
+
+Number of put-away activities created: 1
+
+用PO header 的No.跟 Page::"Posted Whse. Receipt Subform" 裡的 source No.連 以取得 "Posted Whse. Receipt" N
 
 
 Page::"Posted Transfer Receipt"=>field "Transfer Order No"=> Page::"Transfer Orders"
