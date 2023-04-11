@@ -23,5 +23,5 @@ Page::"Posted Transfer Receipt"=>field "Transfer Order No"=> Page::"Transfer Ord
 
 
 
-<!-- https://vld-nav.com/how-to-group-data -->
+https://vld-nav.com/how-to-group-data
                  
