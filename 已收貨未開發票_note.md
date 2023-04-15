@@ -24,4 +24,4 @@ Page::"Posted Transfer Receipt"=>field "Transfer Order No"=> Page::"Transfer Ord
 
 
 https://vld-nav.com/how-to-group-data
-                 
+https://learn.microsoft.com/en-us/sql/reporting-services/lesson-6-adding-grouping-and-totals-reporting-services?view=sql-server-ver16
