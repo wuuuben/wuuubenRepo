@@ -31,3 +31,5 @@ https://learn.microsoft.com/en-us/sql/reporting-services/lesson-6-adding-groupin
 https://www.youtube.com/watch?v=0NAIZ0kiT5A&t=405s
 
 https://www.mssqltips.com/sqlservertip/6533/multiple-row-grouping-levels-in-ssrs-report/
+
+https://sqlskull.com/2021/04/10/aadd-row-number-for-grouped-data/
