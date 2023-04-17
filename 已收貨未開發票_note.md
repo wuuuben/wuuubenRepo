@@ -18,6 +18,7 @@ Number of put-away activities created: 1
 
 Page::"Posted Transfer Receipt"=>field "Transfer Order No"=> Page::"Transfer Orders"
 
+prepayment修改為0
 
 
 
