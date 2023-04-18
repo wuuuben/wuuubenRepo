@@ -35,3 +35,5 @@ https://www.mssqltips.com/sqlservertip/6533/multiple-row-grouping-levels-in-ssrs
 https://sqlskull.com/2021/04/10/aadd-row-number-for-grouped-data/
 
 https://www.dynamicsuser.net/t/report-integer-dataitem/31761/17
+
+https://yzhums.com/13827/
