@@ -37,3 +37,5 @@ https://sqlskull.com/2021/04/10/aadd-row-number-for-grouped-data/
 https://www.dynamicsuser.net/t/report-integer-dataitem/31761/17
 
 https://yzhums.com/13827/
+
+https://www.youtube.com/watch?v=TVgN5G67ZQI
