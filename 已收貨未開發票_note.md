@@ -22,6 +22,7 @@ prepayment修改為0
 
 在purchase invoice 中的comment "receipt No."為 posted purchase receipt No.
 
+purchase invoice => Line => Function => Get Receipt Lines 選擇 posted purchase receipt
 
 
 
