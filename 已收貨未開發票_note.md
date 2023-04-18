@@ -20,6 +20,7 @@ Page::"Posted Transfer Receipt"=>field "Transfer Order No"=> Page::"Transfer Ord
 
 prepayment修改為0
 
+在purchase invoice 中的comment "receipt No."為 posted purchase receipt No.
 
 
 
