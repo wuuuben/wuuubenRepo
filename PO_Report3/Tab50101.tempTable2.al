@@ -1,6 +1,6 @@
-table 50100 tempPO
+table 50101 tempTable2
 {
-    Caption = 'tempPO';
+    Caption = 'tempTable2';
     DataClassification = ToBeClassified;
     TableType = Temporary;
 
@@ -16,6 +16,8 @@ table 50100 tempPO
             Caption = 'PONo';
             DataClassification = ToBeClassified;
         }
+
+
         field(3; BuyFromVendorNo; Code[20])//vendor
         {
             Caption = 'BuyFromVendorNo';
@@ -23,7 +25,7 @@ table 50100 tempPO
         }
         field(4; PWRLNo; Code[20])
         {
-            Caption = 'DocumentNo';
+            Caption = 'PWRLNo';
             DataClassification = ToBeClassified;
         }
         field(5; QtyRcdNotInvoiced; Decimal)
@@ -33,39 +35,39 @@ table 50100 tempPO
         }
         field(6; VATProdPostingGroup; Code[20])
         {
-            Caption = 'QtyRcdNotInvoiced';
+            Caption = 'VATProdPostingGroup';
             DataClassification = ToBeClassified;
         }
         field(7; Amount; Decimal)
         {
-            Caption = 'QtyRcdNotInvoiced';
+            Caption = 'Amount';
             DataClassification = ToBeClassified;
         }
         field(8; CurrencyCode; Code[10])
         {
-            Caption = 'QtyRcdNotInvoiced';
+            Caption = 'CurrencyCode';
             DataClassification = ToBeClassified;
         }
         field(9; Description; Text[100])
         {
-            Caption = 'QtyRcdNotInvoiced';
+            Caption = 'Description';
             DataClassification = ToBeClassified;
         }
         field(10; No; Code[20])
         {
-            Caption = 'QtyRcdNotInvoiced';
+            Caption = 'No';
             DataClassification = ToBeClassified;
         }
         field(11; DirectUnitCost; Decimal)
         {
-            Caption = 'QtyRcdNotInvoiced';
+            Caption = 'DirectUnitCost';
             DataClassification = ToBeClassified;
         }
-
-
-
-
-
+        field(12; ExistInPILine; Boolean)
+        {
+            Caption = 'Exist In PI Line';
+            DataClassification = ToBeClassified;
+        }
     }
     keys
     {

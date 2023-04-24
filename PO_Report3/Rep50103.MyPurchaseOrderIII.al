@@ -1,3 +1,4 @@
+
 report 50103 MyPurchaseOrderIII
 {
     ApplicationArea = All;
@@ -8,63 +9,119 @@ report 50103 MyPurchaseOrderIII
     RDLCLayout = 'rdl/MyPurchaseOrderIII.rdlc';
     dataset
     {
-        dataitem(tempPO; tempPO)
+
+
+        dataitem(Vendor; Vendor)
         {
-            column(DirectUnitCost_tempPO; DirectUnitCost)
+            column(vendorNo; "No.")
             {
             }
-            column(No_tempPO; No)
+            column(vendorName; Name)
             {
             }
-            column(Description_tempPO; Description)
+            dataitem(tempTable2; tempTable2)
             {
-            }
-            column(CurrencyCode_tempPO; CurrencyCode)
-            {
-            }
-            column(Amount_tempPO; Amount)
-            {
-            }
-            column(VAT_tempPO; VATProdPostingGroup)
-            {
-            }
-            column(RowNo_tempPO; RowNo)
-            {
-            }
-            column(BuyFromVendorNo_tempPO; BuyFromVendorNo)
-            {
-            }
-            column(PONo_tempPO; PONo)
-            {
-            }
-            column(PWRLNo_tempPO; PWRLNo)
-            {
-            }
-            column(QtyRcdNotInvoiced_tempPO; QtyRcdNotInvoiced)
-            {
-            }
-            column(startdate; startdateReq)
-            {
-            }
-            column(enddate; enddateReq)
-            {
-            }
-            dataitem(Vendor; Vendor)
-            {
-                RequestFilterFields = "No.";
-                column(vendorNo; vendorNo)
+                column(ExistInPILine_tempTable2; ExistInPILine)
                 {
                 }
-                column(vendorName; Name)
+                column(DirectUnitCost; DirectUnitCost)
                 {
                 }
+                column(No; No)
+                {
+                }
+                column(Description; Description)
+                {
+                }
+                column(CurrencyCode; CurrencyCode)
+                {
+                }
+                column(Amount; Amount)
+                {
+                }
+                column(VAT; VATProdPostingGroup)
+                {
+                }
+                column(BuyFromVendorNo; BuyFromVendorNo)
+                {
+                }
+                column(PONo; PONo)
+                {
+                }
+                column(PWRLNo; PWRLNo)
+                {
+                }
+                column(QtyRcdNotInvoiced; QtyRcdNotInvoiced)
+                {
+                }
+                column(startdate; startdateReq)
+                {
+                }
+                column(enddate; enddateReq)
+                {
+                }
+                trigger OnPreDataItem()
+                begin
+                    if FilterExistInPILine then
+                        tempTable2.SetFilter(ExistInPILine, '=false');
+                end;
             }
+            trigger OnAfterGetRecord()
+            var
+                q: Query FilterPWRLwithVendor;
+                PL: Record "Purchase Line";
+                FilterStr: Text;
+
+            begin
+                vendorNo := "No.";//retrieve request page filter
+
+
+                tempTable2.Reset();
+                tempTable2.DeleteAll();
+
+                q.SetRange(BuyfromVendorNo, vendorNo);
+                q.SetFilter(QtyRcdNotInvoiced, '>0');//QtyRcdNotInvoiced filter
+
+                if q.Open() then begin
+                    while q.Read() do begin
+                        //add query to temp record study: https://yzhums.com/4869/ https://yzhums.com/34290/
+
+                        tempTable2.Init();
+
+                        tempTable2.RowNo := tempTable2.RowNo + 1;
+                        tempTable2.PONo := q.SourceNo_PWRL;
+                        tempTable2.BuyFromVendorNo := q.BuyfromVendorNo;
+                        tempTable2.PWRLNo := q.No_PWRL;
+                        tempTable2.QtyRcdNotInvoiced := q.QtyRcdNotInvoiced;
+                        tempTable2.VATProdPostingGroup := q.VATProdPostingGroup;
+                        tempTable2.Amount := q.Amount;
+                        tempTable2.CurrencyCode := q.CurrencyCode;
+                        tempTable2.No := q.itemNo;
+                        tempTable2.Description := q.Description;
+                        tempTable2.DirectUnitCost := q.DirectUnitCost;
+                        //check if exist in PI line
+                        PL.Reset();
+                        PL.SetRange("Receipt No.", q.DocumentNo_PRL);
+                        PL.SetFilter("Document Type", '%1', "Purchase Document Type"::Invoice);
+                        if PL.FindSet then begin
+                            tempTable2.ExistInPILine := true;
+                        end else begin
+                            tempTable2.ExistInPILine := false;
+                        end;
+                        tempTable2.Insert();
+
+                    end;
+                    q.Close();
+                end;
+
+            end;
         }
+
+
+
     }
     requestpage
     {
-
-
         SaveValues = true;
         layout
         {
@@ -82,6 +139,12 @@ report 50103 MyPurchaseOrderIII
                         end;
                     end;
                 }
+
+                field(FilterExistInPILine; FilterExistInPILine)//special scenario
+                {
+                    Caption = 'Filter Exist In PI Line';
+                    ApplicationArea = all;
+                }
             }
         }
         trigger OnOpenPage()
@@ -90,55 +153,31 @@ report 50103 MyPurchaseOrderIII
             if (enddateReq = 0D) then begin
                 enddateReq := WorkDate;
             end
-            // Vendor.SetFilter("No.", '=%1', vendorNo);
         end;
     }
 
-    trigger OnPreReport()
-    var
-        q: Query FilterPWRLwithVendor;
-
+    trigger OnInitReport()
     begin
-        vendorNo := Vendor.GetFilter("No.");//retrieve request page filter
-        tempPO.Reset();
-        tempPO.DeleteAll();
-        q.SetRange(BuyfromVendorNo_PurchaseLine, vendorNo);
-        q.SetFilter(QtyRcdNotInvoiced_PurchaseLine, '>0');//QtyRcdNotInvoiced filter
-        if q.Open() then begin
-            while q.Read() do begin
-                //add query to temp record study: https://yzhums.com/4869/ https://yzhums.com/34290/
-                tempPO.Init();
-                tempPO.RowNo := tempPO.RowNo + 1;
-                tempPO.PONo := q.SourceNo_PWRL;
-                tempPO.BuyFromVendorNo := q.BuyfromVendorNo_PurchaseLine;
-                tempPO.PWRLNo := q.No_PWRL;
-                tempPO.QtyRcdNotInvoiced := q.QtyRcdNotInvoiced_PurchaseLine;
-                tempPO.VATProdPostingGroup := q.VATProdPostingGroup;
-                tempPO.Amount := q.Amount;
-                tempPO.CurrencyCode := q.CurrencyCode;
-                tempPO.No := q.itemNo;
-                tempPO.Description := q.Description;
-                tempPO.DirectUnitCost := q.DirectUnitCost;
-                tempPO.Insert();
-            end;
-            q.Close();
-        end;
+        Vendor.Reset();
+        FilterExistInPILine := false;
+    end;
 
 
+    trigger OnPreReport()
+    begin
+        if FilterExistInPILine then
+            tempTable2.SetRange(ExistInPILine, false);
     end;
 
 
 
 
-    // procedure SetParameter(var _VendorNo: Code[20])
-    // begin
-    //     vendorNo := _VendorNo;
-    // end;
+
 
     var
         vendorNo: Code[20];
         startdateReq: Date;
         enddateReq: Date;
+        FilterExistInPILine: Boolean;
 
 }
-
