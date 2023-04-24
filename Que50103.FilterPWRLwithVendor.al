@@ -15,8 +15,9 @@ query 50103 FilterPWRLwithVendor
             {
             }
 
-            dataitem(PurchaseLine; "Purchase Line")
+            dataitem(PurchaseLine_order; "Purchase Line")
             {
+                DataItemTableFilter = "Document Type" = const(Order);
                 DataItemLink = "Document No." = PWRL."Source No.";
                 SqlJoinType = InnerJoin;
                 column(DirectUnitCost; "Direct Unit Cost")
@@ -37,13 +38,19 @@ query 50103 FilterPWRLwithVendor
                 }
                 column(Amount; Amount)
                 {
-                    // Method = Sum;
                 }
-                column(QtyRcdNotInvoiced_PurchaseLine; "Qty. Rcd. Not Invoiced")
+                column(QtyRcdNotInvoiced; "Qty. Rcd. Not Invoiced")
                 {
                 }
-                column(BuyfromVendorNo_PurchaseLine; "Buy-from Vendor No.")
+                column(BuyfromVendorNo; "Buy-from Vendor No.")
                 {
+                }
+                dataitem(PurchaseReceiptLine; "Purch. Rcpt. Line")
+                {
+                    DataItemLink = "Order No." = PurchaseLine_order."Document No.";
+                    column(DocumentNo_PRL; "Document No.")
+                    {
+                    }
                 }
 
 
