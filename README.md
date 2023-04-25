@@ -10,6 +10,8 @@ dataprovider
 
 AL Object Designer
 
+使用notepad開啟所有相關al檔 再使用 查找 修改
+
 Customer Service、Field Service 和 Project Service Automation 等多個模塊，可以單獨使用或組合使用，以適應不同企業的需求。
 
 Sales 應用程式旨在幫助企業管理銷售流程、提高銷售效率和業績。它包括客戶和機會管理、銷售預測、報價和訂單管理、合同管理等功能。
