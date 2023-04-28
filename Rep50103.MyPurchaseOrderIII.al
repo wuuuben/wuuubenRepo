@@ -162,18 +162,6 @@ report 50103 MyPurchaseOrderIII
         FilterExistInPILine := false;
     end;
 
-
-    trigger OnPreReport()
-    begin
-        if FilterExistInPILine then
-            tempTable2.SetRange(ExistInPILine, false);
-    end;
-
-
-
-
-
-
     var
         vendorNo: Code[20];
         startdateReq: Date;
