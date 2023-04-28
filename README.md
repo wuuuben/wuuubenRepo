@@ -25,3 +25,5 @@ Field Service 應用程式旨在幫助企業提高現場服務效率和客戶滿
 Project Service Automation 應用程式旨在幫助企業提高專案管理效率和利潤率，包括專案計劃、資源分配、成本控制、時間和費用管理等功能。
 
 https://yzhums.com/5985/
+
+https://www.youtube.com/watch?v=X7xEdHYF59U
